@@ -24,7 +24,7 @@ services:
     gqlEndpoint: '${CERC_REGISTRY_GQL_ENDPOINT:-https://laconicd.laconic.com/api}'
     chainId: ${CERC_REGISTRY_CHAIN_ID:-laconic_9000-1}
     gas: 9550000
-    fees: 500000alnt
+    fees: 5000000alnt
 EOF
 
 next_ver=$(laconic -c $CONFIG_FILE registry record list --type ApplicationRecord --all --name "$rcd_name" 2>/dev/null | jq -r -s ".[] | sort_by(.createTime) | reverse | [ .[] | select(.bondId == \"$CERC_REGISTRY_BOND_ID\") ] | .[0].attributes.version" | awk -F. -v OFS=. '{$NF += 1 ; print}')
