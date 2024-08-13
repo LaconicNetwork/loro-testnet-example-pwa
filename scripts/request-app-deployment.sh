@@ -15,7 +15,7 @@ services:
     gqlEndpoint: '${CERC_REGISTRY_GQL_ENDPOINT:-https://laconicd.laconic.com/api}'
     chainId: ${CERC_REGISTRY_CHAIN_ID:-laconic_9000-1}
     gas: 550000
-    fees: 5000000alnt
+    fees: 15000000alnt
 EOF
 
 if [ -z "$CERC_REGISTRY_APP_CRN" ]; then
