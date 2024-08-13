@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@hypha/workin-ui",
+  "name": "@lcn-example/pwa-test",
   "version": "0.1.18",
-  "repository": "https://git.vdb.to/zramsay/birbit",
+  "repository": "https://git.vdb.to/LaconicNetwork/PWA-example",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
