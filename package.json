@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@lcn-example/pwa-test",
-  "version": "0.1.18",
+  "name": "@lcn-example/pwa-test-2",
+  "version": "0.1.19",
   "repository": "https://git.vdb.to/LaconicNetwork/PWA-example",
   "scripts": {
     "dev": "next dev",
