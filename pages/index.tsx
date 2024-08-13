@@ -11,11 +11,11 @@ export default function Home() {
         <div className={styles.grid}>
 
         <p className={styles.card}>
-          CONFIG1 has value: {process.env.CERC_TEST_WEBAPP_CONFIG1}
+          Laconic Address has value: {process.env.CERC_TEST_WEBAPP_CONFIG1}
         </p>
 
         <p className={styles.card}>
-          CONFIG2 has value: {process.env.CERC_TEST_WEBAPP_CONFIG2}
+          Public Key has value: {process.env.CERC_TEST_WEBAPP_CONFIG2}
         </p>
 
         <p className={styles.card}>
