@@ -30,7 +30,7 @@ if [ -z "$APP_RECORD" ] || [ "null" == "$APP_RECORD" ]; then
   exit 1
 fi
 
-cat <<EOF | sed '/.*: ""$/d' > "$RECORD_FILE"
+cat <<EOF | sed '/.*: ""$/d' > "$ADR_RECORD_FILE"
 record:
   type: ApplicationDeploymentRequest
   version: 1.0.0
@@ -47,8 +47,8 @@ record:
     repository_ref: "${GITHUB_SHA:-`git log -1 --format="%H"`}"
 EOF
 
-cat $RECORD_FILE
-RECORD_ID=$(laconic -c $CONFIG_FILE registry record publish --filename $RECORD_FILE --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} | jq -r '.id')
-echo $RECORD_ID
+cat $ADR_RECORD_FILE
+ADR_RECORD_ID=$(laconic -c $CONFIG_FILE registry record publish --filename $ADR_RECORD_FILE --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} | jq -r '.id')
+echo $ADR_RECORD_ID
 
 rm -f $RECORD_FILE $CONFIG_FILE
