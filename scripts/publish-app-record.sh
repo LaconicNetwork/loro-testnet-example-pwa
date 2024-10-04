@@ -65,8 +65,19 @@ if [ -z "$CERC_REGISTRY_APP_CRN" ]; then
   authority=$(echo "$rcd_name" | cut -d'/' -f1 | sed 's/@//')
   app=$(echo "$rcd_name" | cut -d'/' -f2-)
   CERC_REGISTRY_APP_CRN="lrn://$authority/applications/$app"
-  laconic -c $CONFIG_FILE registry authority reserve ${authority} --user-key "${CERC_REGISTRY_USER_KEY}"
-  laconic -c $CONFIG_FILE registry authority bond set ${authority} ${CERC_REGISTRY_BOND_ID} --user-key "${CERC_REGISTRY_USER_KEY}"
+
+  echo "Authority: $authority, App: $app"
+
+  # Check if the authority is already reserved
+  whois_response=$(laconic -c $CONFIG_FILE registry authority whois "$authority")
+
+  if [ "$(echo "$whois_response" | jq '.[0]')" == "null" ]; then
+    echo "Authority not reserved. Reserving now..."
+    laconic -c $CONFIG_FILE registry authority reserve "$authority" --user-key "${CERC_REGISTRY_USER_KEY}"
+    laconic -c $CONFIG_FILE registry authority bond set "$authority" "$CERC_REGISTRY_BOND_ID" --user-key "${CERC_REGISTRY_USER_KEY}"
+  else
+    echo "Authority '$authority' is already reserved."
+  fi
 fi
 
 laconic -c $CONFIG_FILE registry name set --user-key "${CERC_REGISTRY_USER_KEY}" --bond-id ${CERC_REGISTRY_BOND_ID} "$CERC_REGISTRY_APP_CRN@${rcd_app_version}" "$AR_RECORD_ID"
